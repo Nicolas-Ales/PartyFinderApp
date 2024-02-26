@@ -1,0 +1,104 @@
+<MessageScreen>:
+    title: "Mensajes"
+    lobby_list_acc: lobby_list
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '8dp'
+        spacing: '8dp'
+        canvas.before:
+            Color:
+                rgba: .5, .5, .5, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: '8dp'
+            size_hint_y: None
+            height: self.minimum_height
+
+            SizedButton:
+                text: 'Crear nuevo lobby'
+                on_release: root.on_btn_create_lobby_release()
+
+            ImageButton:
+                source: 'res/reload.png'
+                size_hint_x: 0.2
+                size_hint_y: None
+                height: '48dp'
+                on_release: root.update_content()
+
+        RelativeLayout:
+
+            Label:
+                text: 'No estás suscripto a ningún lobby aún :('
+                opacity: 0.0 if len(lobby_list.children) else 1.0
+
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+
+                Accordion:
+                    id: lobby_list
+                    orientation: 'vertical'
+
+<LobbyDetail@AccordionItem>:
+    description_label: description_label
+    accepted_icon: accepted_icon
+    members_icon: members_icon
+    leave_icon: leave_icon
+    delete_icon: delete_icon
+    edit_icon: edit_icon
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '16dp'
+        spacing: '8dp'
+
+        Label:
+            id: description_label
+            size_hint_y: None
+            size: self.texture_size
+            text_size: self.width, None
+
+        SizedTextInput:
+            id: contacto_label
+            readonly: True
+
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: '8dp'
+            height: self.minimum_height
+
+            ImageButton:
+                id: accepted_icon
+                source: 'res/account-pending.png'
+                size_hint_y: None
+                height: '48dp'
+
+            ImageButton:
+                id: members_icon
+                source: 'res/members.png'
+                size_hint_y: None
+                height: '48dp'
+
+            ImageButton:
+                id: leave_icon
+                source: 'res/leave.png'
+                size_hint_y: None
+                height: '48dp'
+
+            ImageButton:
+                id: delete_icon
+                source: 'res/delete.png'
+                size_hint_y: None
+                height: '48dp'
+                disabled: True
+
+            ImageButton:
+                id: edit_icon
+                source: 'res/edit.png'
+                size_hint_y: None
+                height: '48dp'

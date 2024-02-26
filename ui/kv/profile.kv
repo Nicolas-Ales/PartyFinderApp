@@ -1,0 +1,114 @@
+#:import smlib kivy.uix.screenmanager
+
+<ProfileScreen>:
+    title: 'Perfil'
+
+    RelativeLayout:
+        canvas.before:
+            Color:
+                rgba: .5, .5, .5, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        ScreenManager:
+            id: sm
+            transition: smlib.WipeTransition()
+
+            Screen:
+                name: 'standar'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    padding: '16dp'
+                    spacing: '8dp'
+
+                    SizedLabel:
+                        id: email_label
+                        text: 'Email'
+
+                    SizedLabel:
+                        id: nombre_label
+                        text: 'Nombre de usuario'
+
+                    Widget:
+
+                    SizedButton:
+                        text: "Cambiar Contraseña"
+                        on_release: sm.current = 'mod_pass'
+
+                    SizedButton:
+                        text: "Modificar"
+                        on_release: sm.current = 'mod_name'
+
+                    SizedButton:
+                        text: "Cerrar Sesión"
+                        on_release: root.cerrar_sesion()
+
+            Screen:
+                name: 'mod_pass'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    padding: '16dp'
+                    spacing: '8dp'
+
+                    SizedTextInput:
+                        id: new_password_textinput
+                        hint_text: 'Nueva contraseña'
+                        password: True
+
+                    SizedTextInput:
+                        id: password_repeat_textinput
+                        hint_text: 'Repetir nueva contraseña'
+                        password: True
+
+                    SizedTextInput:
+                        id: old_password_textinput
+                        hint_text: 'Contraseña anterior'
+                        password: True
+
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: '8dp'
+
+                        SizedButton:
+                            text: "Aceptar"
+                            on_release: root.update_pass()
+
+                        SizedButton:
+                            text: 'Volver'
+                            on_release: root.volver()
+
+            Screen:
+                name: 'mod_name'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    padding: '16dp'
+                    spacing: '8dp'
+
+                    SizedTextInput:
+                        id: new_email_textinput
+                        hint_text: 'Email'
+
+                    SizedTextInput:
+                        id: new_name_textinput
+                        hint_text: 'Nombre de usuario'
+
+                    SizedTextInput:
+                        id: password_textinput
+                        hint_text: 'Contraseña'
+                        password: True
+
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: '8dp'
+
+                        SizedButton:
+                            text: "Aceptar"
+                            on_release: root.update_name()
+
+                        SizedButton:
+                            text: 'Volver'
+                            on_release: root.volver()

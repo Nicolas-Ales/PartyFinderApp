@@ -1,0 +1,45 @@
+<LobbyCreationScreen>:
+    title: "Crear Lobby"
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '16dp'
+        spacing: '8dp'
+        canvas.before:
+            Color:
+                rgba: .5, .5, .5, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        SizedTextInput:
+            id: create_name_text
+            hint_text: "Nombre de Lobby"
+
+        TextInput:
+            id: create_desc_text
+            write_tab: False
+            size_hint_y: None
+            height: '144dp'
+            hint_text: "Descripción"
+
+        SizedTextInput:
+            id: create_tag_text
+            hint_text: "Etiquetas (separadas por comas)"
+
+        SizedTextInput:
+            id: link_contacto
+            input_type: 'url'
+            hint_text: "Link de contacto"
+
+        Label:
+            text: "Recomendamos usar Discord, Whatsapp, Telegram, etc."
+            size_hint_y: None
+            size: self.texture_size
+
+        Widget:
+
+        SizedButton:
+            id: btn_crear
+            text: "Crear"
+            on_release: root.on_btn_crear_lobby()

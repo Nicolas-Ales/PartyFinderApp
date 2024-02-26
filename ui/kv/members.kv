@@ -1,0 +1,55 @@
+<MembersScreen>:
+    title: 'Miembros'
+    member_list_acc: member_list
+
+    BoxLayout:
+        padding: '16dp'
+        canvas.before:
+            Color:
+                rgba: .5, .5, .5, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            Accordion:
+                id: member_list
+                orientation: 'vertical'
+
+<MemberDetail@AccordionItem>:
+
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: '16dp'
+        spacing: '8dp'
+
+        ImageButton:
+            id: accept_icon
+            source: 'res/add.png'
+            size_hint_y: None
+            height: '48dp'
+            on_release: root.aceptar_miembro()
+
+        ImageButton:
+            id: delete_icon
+            source: 'res/delete.png'
+            size_hint_y: None
+            height: '48dp'
+            on_release: root.borrar_miembro()
+
+        ImageButton:
+            id: ascend_icon
+            source: 'res/up.png'
+            size_hint_y: None
+            height: '48dp'
+            on_release: root.ascender_miembro()
+
+        ImageButton:
+            id: descend_icon
+            source: 'res/down.png'
+            size_hint_y: None
+            height: '48dp'
+            on_release: root.descender_miembro()

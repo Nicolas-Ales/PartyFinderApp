@@ -1,0 +1,102 @@
+#:import smlib kivy.uix.screenmanager
+
+<LoginScreen>:
+    title: "Login"
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '16dp'
+        spacing: '8dp'
+
+        Widget:
+            size_hint_y: None
+            height: '48dp'
+
+        Image:
+            source: 'res/appicon.png'
+            size_hint_y: None
+            size: self.texture_size
+
+        Label:
+            text: 'PartyFinder'
+            font_size: '24sp'
+            size_hint_y: None
+            size: self.texture_size
+
+        Widget:
+            size_hint_y: None
+            height: '32dp'
+
+        ScreenManager:
+            id: sm
+            transition: smlib.WipeTransition()
+
+            Screen:
+                name: 'login'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: '8dp'
+
+                    SizedTextInput:
+                        id: login_email_text
+                        hint_text: 'Email'
+
+                    SizedTextInput:
+                        id: login_password_text
+                        hint_text: 'Contraseña'
+                        password: True
+
+                    SizedButton:
+                        text: "Ingresar"
+                        on_release: root.on_btn_login_release()
+
+                    Widget:
+
+                    Label:
+                        font_size: '12sp'
+                        markup: True
+                        text: "Crear una [ref=world][color=3333ff][u]nueva cuenta[/u][/color][/ref]."
+                        on_ref_press: sm.current = 'register'
+                        size_hint_y: None
+                        size: self.texture_size
+
+            Screen:
+                name: 'register'
+                on_pre_leave: root.on_pre_leave_register()
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: '8dp'
+
+                    SizedTextInput:
+                        id: register_email_text
+                        hint_text: 'Email'
+
+                    SizedTextInput:
+                        id: register_name_text
+                        hint_text: 'Nombre de usuario'
+
+                    SizedTextInput:
+                        id: register_password_text
+                        hint_text: 'Contraseña'
+                        password: True
+
+                    SizedTextInput:
+                        id: register_password_repeat_text
+                        hint_text: 'Repetir contraseña'
+                        password: True
+
+                    SizedButton:
+                        text: "Registrarse"
+                        on_release: root.on_btn_register_release()
+
+                    Widget:
+
+                    Label:
+                        font_size: '12sp'
+                        markup: True
+                        text: "Ingresar a una [ref=world][color=3333ff][u]cuenta existente[/u][/color][/ref]."
+                        on_ref_press: sm.current = 'login'
+                        size_hint_y: None
+                        size: self.texture_size

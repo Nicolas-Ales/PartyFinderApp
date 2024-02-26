@@ -1,0 +1,80 @@
+<SearchScreen>:
+    title: "Búsquedas"
+    lobby_list_acc: lobby_list
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        BoxLayout:
+            size_hint_y: None
+            height: self.minimum_height
+            padding: '16dp'
+            spacing: '8dp'
+
+            SizedTextInput:
+                id: busqueda
+                size_hint_x: 0.6
+                hint_text: 'Buscar...'
+
+            Spinner:
+                id: spinner
+                size_hint_x: 0.3
+                text: 'Nombre'
+                values: 'Etiqueta', 'Nombre', 'Descripción'
+
+            ImageButton:
+                size_hint_x: 0.1
+                source: 'res/search.png'
+                on_release: root.buscar()
+
+        BoxLayout:
+            orientation: 'vertical'
+            canvas.before:
+                Color:
+                    rgba: .5, .5, .5, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+
+                Accordion:
+                    id: lobby_list
+                    orientation: 'vertical'
+
+<LobbyDetailS@AccordionItem>:
+    description_label: description_label
+    request_icon: request_icon
+    creador_label: creador_label
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '16dp'
+        spacing: '8dp'
+
+        SizedLabel:
+            id: creador_label
+
+        Label:
+            id: description_label
+            size_hint_y: None
+            size: self.texture_size
+            text_size: self.width, None
+
+        SizedLabel:
+            id: cant_miembros
+
+        Widget:
+
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: '8dp'
+
+            ImageButton:
+                id: request_icon
+                source: 'res/add.png'
+                size_hint_y: None
+                height: '48dp'
+                on_release: root.request()

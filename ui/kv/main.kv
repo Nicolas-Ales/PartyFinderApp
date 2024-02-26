@@ -1,0 +1,24 @@
+<MainScreen>:
+    title: "Menú Principal"
+    notif_scroll_list: notif_scroll_list
+
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: .5, .5, .5, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        ImageButton:
+            source: 'res/reload.png'
+            on_release: root.actualizar()
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            BoxLayout:
+                id: notif_scroll_list
+                orientation: 'vertical'
